@@ -5,15 +5,14 @@ import Login from "./Login";
 import Register from "./Register";
 import Card from "../components/ProductCard";
 
-const Home = () => {
-    const [searchItems, setsearchItems] = useState("");
-    function handleChange(event) {
-        setsearchItems(event.target.value);
-        console.log(searchItems);
-    }
+const Home = ({showLogin,showSignUp,setShowLogin,setShowSignUp}) => {
+     const [searchItems, setSearchItems] = useState("");
+        const handleChange = (e) => {
+        setSearchItems(e.target.value);
+    };
     return (
         <div className="big-container">
-            <Header />
+            
             <div className="content-container">
                 <h1 >Book<span style={{ color: "purple" }}>Byte</span> </h1>
                 <h5>Favourite place for your favourite books</h5><br />
@@ -60,6 +59,20 @@ const Home = () => {
 
 
             </div>
+            {showLogin && (
+                <>
+                    <div className="modal-overlay" onClick={() => setShowLogin(false)} />
+                    <Login onClose={() => setShowLogin(false)} />
+                </>
+            )}
+
+            {/* ✅ Show Signup as a modal */}
+            {showSignUp && (
+                <>
+                    <div className="modal-overlay" onClick={() => setShowSignUp(false)} />
+                    <Register onClose={() => setShowSignUp(false)} />
+                </>
+            )}
         </div>
     )
 

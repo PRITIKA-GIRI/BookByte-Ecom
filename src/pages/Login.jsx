@@ -1,8 +1,9 @@
 
 import '../App.css';
 import axios from 'axios';
-import { useState, useNavigate } from 'react';
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../App.css'
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -22,13 +23,13 @@ const Login = () => {
 
         <div className="form-container">
             <form onSubmit={handleSubmit} method="POST">
-
+                <h4 className="text-center">Login Form</h4><br />
                 <label htmlFor="username" name="username">
                     Username:<br /> <input type="text" name="username" onChange={e=>setUsername(e.target.value)}/>
                 </label><br />
                 <label htmlFor="password" name="password">
                     Password: <br /> <input type="password" name="password" onChange={e=>setPassword(e.target.value)} />
-                </label><br /><br />
+                </label><br />
 
                 <button className="button" type="submit">Login</button>
 
