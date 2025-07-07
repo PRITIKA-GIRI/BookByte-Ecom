@@ -13,10 +13,13 @@ const Register=()=>{
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { username,email, password });
+      await axios.post('http://localhost:5000/api/auth/register', 
+        { username:rusername,
+          email:remail,
+          password:rpassword});
       alert('Registration successful. Please login.');
       navigate('/login');
-    } catch {
+    } catch { 
       alert('Registration failed.');
     }
   };
@@ -34,7 +37,7 @@ const Register=()=>{
             Username:<br/> <input type="text" name="rusername" value={rusername}onChange={e => setUsername(e.target.value)}/>
         </label><br />
         <label htmlFor="rpassword" name="rpassword">
-            Password: <br/> <input type="password" name="rpassword" value={remail} onChange={e => setPassword(e.target.value)}/>
+            Password: <br/> <input type="password" name="rpassword" value={rpassword} onChange={e => setPassword(e.target.value)}/>
         </label><br />
         
         <button className="button" type="submit">Register</button>

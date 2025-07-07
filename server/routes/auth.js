@@ -1,30 +1,60 @@
-// const express = require('express');
-// const router = express.Router();
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-// const db = require('../db');
+import express from 'express';
+import bycrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import pool from '../db';
 
-// router.post('/register', async (req, res) => {
-//   const { username,email, password } = req.body;
-//   const hashed = await bcrypt.hash(password, 10);
-//   try {
-//     await db.query('INSERT INTO users (username,email, password) VALUES ($1, $2,$3)', [username,email, hashed]);
-//     res.status(201).json({ message: 'User registered' });
-//   } catch {
-//     res.status(400).json({ message: 'User exists' });
-//   }
-// });
+const router = express.Router();
 
-// router.post('/login', async (req, res) => {
-//   const { username, password } = req.body;
-//   const result = await db.query('SELECT * FROM users WHERE username = $1', [username]);
-//   const user = result.rows[0];
+router.post('/register', async (req, res) => {
+    const { username, password, email } = req.body;
+    try {
+        const userExists = await pool.query(
+            "SELECT * from users WHERE username=$1 AND email=$2", [username, email]);
 
-//   if (!user || !(await bcrypt.compare(password, user.password)))
-//     return res.status(401).json({ message: 'Invalid credentials' });
+        if (userExists.rows.length > 0) {
+            return res.status(400).json({ msg: "User already exists" });
+        }
 
-//   const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-//   res.json({ token });
-// });
+        const hashedPassword=await bycrypt.hash(password,10);
 
-// module.exports = router;
+        await pool.query(
+            "INSERT INTO users(username,email,password) VALUES ($1,$2,$3)",[username,email,hashedPassword]
+        );
+        res.status(201).json({msg:"User registered successfully"});
+    }catch(err){
+        console.err(err);
+        return res.status(500).json({msg:"Server error"});
+    }
+
+})
+
+router.post('/login',async(req,res)=>{
+    const{username,password}=req.body;
+    try{
+        const result=await pool.query(
+            "SELECT * FROM users WHERE username=$1"
+            ,[username]);
+
+        if(result.rows.length===0)
+            return res.status(400).json({msg:"Invalid Credentials"});
+        const user=result.rows[0];
+        
+        const isMatch=await bycrypt.compare(password,user.password);
+
+        if(!isMatch)
+            return res.status(400).json({msg:"Invalid Credentials"});
+
+        const token=jwt.sign({id:user.id},process.env.JWT_SECRET,{
+             expiresIn:"1hr",
+        });
+
+        res.send(token);
+    }catch(err){
+        console.log(err);
+        res.status(500).json({msg:"Server error"});
+    }
+})
+
+
+
+export default router;

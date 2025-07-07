@@ -1,21 +1,26 @@
-// const express = require('express');
-// const cors = require('cors');
-// const authRoutes = require('./routes/auth');
-// const productRoutes = require('./routes/products');
-// const downloadRoutes = require('./routes/download');
-// const esewaRoutes = require('./routes/esewa');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-// require('dotenv').config();
+import authRoutes from './routes/auth.js';          // your auth routes (register/login)
+import productRoutes from './routes/products.js';   // optional
+import downloadRoutes from './routes/download.js';  // optional
+import esewaRoutes from './routes/esewa.js';        // optional
 
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
+dotenv.config();
 
-// app.use('/api/auth', authRoutes);
-// app.use('/api/products', productRoutes);
-// app.use('/api/download', downloadRoutes);
-// app.use('/api/esewa', esewaRoutes);
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-// app.listen(5000, () => {
-//   console.log('Server running on port 5000');
-// });
+// Middleware
+app.use(cors());
+app.use(express.json()); // parse JSON bodies
+
+// API routes
+app.use('/api/auth', authRoutes);
+
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,5 +1,5 @@
 import '../App.css';
-import { FaDownload } from 'react-icons/fa'; // Make sure to install react-icons
+import { FaDownload } from 'react-icons/fa'; 
 
 const Card = ({ image, name, author, rating, isPurchased, price }) => {
   return (
@@ -10,18 +10,16 @@ const Card = ({ image, name, author, rating, isPurchased, price }) => {
 
       <div className="card-details">
         <p className="book-name"><strong>{name}</strong></p>
-        <p className="book-author">by {author}</p>
+        <p className="book-author">By {author}</p>
         <p className="book-rating">Rating: {rating} ⭐</p>
 
         <div className="price-download">
           <p className="price">Rs.{price}</p>
           <button
-            className={`download-button ${isPurchased ? 'purchased' : 'disabled'}`}
-            disabled={!isPurchased}
-            title={isPurchased ? 'Download' : 'Purchase required'}
+            
           >
             <FaDownload style={{ marginRight: '5px' }} />
-            Download
+            if(lo)
           </button>
         </div>
       </div>
