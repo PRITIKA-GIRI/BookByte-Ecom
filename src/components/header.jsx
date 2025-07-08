@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
-
+import '../App.css'
+import adminLogo from '../assets/userIcon.svg'
 const Header = () => {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
-    
+
     const handleLogout = () => {
         logout();
         navigate("/");
@@ -14,7 +15,7 @@ const Header = () => {
         <div>
             <header className='header'>
                 <nav className="d-flex justify-content-between align-items-center w-100">
-                    <div className='left'><strong><h4 onClick={()=>navigate('/')} style={{cursor:"pointer"}}><span style={{ color: "black" }}>Book</span>Byte </h4></strong></div>
+                    <div className='left'><strong><h4 onClick={() => navigate('/')} style={{ cursor: "pointer" }}><span style={{ color: "black" }}>Mind</span>Bloom </h4></strong></div>
                     <div className="d-flex gap-3 align-items-center right">
                         {!isLoggedIn ? (
                             <>
@@ -24,8 +25,15 @@ const Header = () => {
                         ) : (
                             <>
                                 <>
-                                    <button onClick={() => navigate('/admin')}>Admin</button>
-                                    <button onClick={ handleLogout}>Logout</button>
+                                    <img
+                                        src={adminLogo}
+                                        alt="adminlogo"
+                                        onClick={() => navigate('/admin')}
+                                        style={{ width: "32px", height: "32px", cursor: "pointer",marginRight:"30px" }}
+                                    />
+
+
+                                    <button onClick={handleLogout}>Logout</button>
                                 </>
                             </>
                         )
