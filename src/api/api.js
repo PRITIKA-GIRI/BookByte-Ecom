@@ -13,3 +13,6 @@ export const loginUser=(credentials)=>{
 export const fetchBooks=()=>{
     return API.get('/books');
 };
+export const recordPurchase = ({ bookId, orderId, amount }) => {
+  return API.post('/purchase', { bookId, orderId, amount });
+};

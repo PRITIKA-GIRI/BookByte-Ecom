@@ -6,31 +6,32 @@ const Card = ({ id, image, name, author, rating, is_purchased, price, pdf_url })
 
   const { isLoggedIn } = useAuth();
   const handleClick = () => {
-    if (!isLoggedIn) return;
+  if (!isLoggedIn) return;
 
-    if (is_purchased) {
-      window.open(pdf_url, '_blank');
-    } else {
-      const productId = id;
-      const amount = price;
-      const successUrl = `http://localhost:5173/success?pid=${productId}`;
-      const failureUrl = `http://localhost:5173/failure`;
+  if (is_purchased) {
+    window.open(pdf_url, '_blank');
+  } else {
+    const amount = Number(price).toFixed(2); // ensure it's a valid number
+    const productId = `BOOK_${id}`; // make sure the pid is alphanumeric
 
-      const esewaUrl = `https://rc.esewa.com.np/epay/main?` +
-        `amt=${amount}&` +
-        `psc=0&` +
-        `pdc=0&` +
-        `txAmt=0&` +
-        `tAmt=${amount}&` +
-        `pid=${id}&` +
-        `scd=EPAYTEST&` +
-        `su=${encodeURIComponent(successUrl)}&` +
-        `fu=${encodeURIComponent(failureUrl)}`;
+    const successUrl = `http://localhost:5173/success?pid=${productId}`;
+    const failureUrl = `http://localhost:5173/failure`;
 
-      console.log("Redirecting to eSewa:", esewaUrl);
-      window.location.href = esewaUrl;
-    }
-  };
+    const esewaUrl = `https://rc.esewa.com.np/epay/main?` +
+      `amt=${amount}&` +
+      `psc=0&` +
+      `pdc=0&` +
+      `txAmt=0&` +
+      `tAmt=${amount}&` +
+      `pid=${productId}&` + // safe PID
+      `scd=EPAYTEST&` +
+      `su=${encodeURIComponent(successUrl)}&` +
+      `fu=${encodeURIComponent(failureUrl)}`;
+
+    console.log("Redirecting to eSewa test:", esewaUrl);
+    window.location.href = esewaUrl;
+  }
+};
 
   return (
     <div className="card-container">
