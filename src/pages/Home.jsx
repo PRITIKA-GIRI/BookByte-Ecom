@@ -50,12 +50,15 @@ const Home = () => {
                         .map((book) => (
                             <Card
                                 key={book.id}
+                                id={book.id}
                                 image={book.image}
                                 name={book.name}
                                 author={book.author}
                                 rating={book.rating}
                                 isPurchased={book.is_purchased}
                                 price={book.price}
+                                available={book.quantity}
+                                pdf_url={`/assets/${book.pdf_url}`}
                             />
                         ))
                 }

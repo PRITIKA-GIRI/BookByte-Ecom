@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import '../App.css'
-import adminLogo from '../assets/userIcon.svg'
+
 const Header = () => {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Header = () => {
                             <>
                                 <>
                                     <img
-                                        src={adminLogo}
+                                        src="/assets/userIcon.svg"
                                         alt="adminlogo"
                                         onClick={() => navigate('/admin')}
                                         style={{ width: "32px", height: "32px", cursor: "pointer",marginRight:"30px" }}
