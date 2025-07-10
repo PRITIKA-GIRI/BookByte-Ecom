@@ -29,8 +29,8 @@ MindBloom is a full-stack web application built with React and Node.js that allo
 ### Setup Instructions
 
 1. **Clone the repo**
-   -git clone https://github.com/yourusername/bookbyte.git
-   -cd bookbyte
+    git clone https://github.com/yourusername/bookbyte.git
+   cd bookbyte
 
 3. Install backend dependencies
    -cd server
