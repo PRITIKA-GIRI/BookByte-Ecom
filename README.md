@@ -13,7 +13,7 @@ MindBloom is a full-stack web application built with React and Node.js that allo
 - **Protected Routes:** Middleware verifies JWT tokens to protect sensitive API endpoints.
 - **Responsive UI:** Built with React, styled with CSS, and icons from react-icons.
 - **Node.js & Express Backend:** RESTful API endpoints for auth, books, and purchase handling.
-- **MongoDB Database:** Stores user info, books, and purchase records (assumed from db.js).
+- **Postgres Database:** Stores user info, books, and purchase records (assumed from db.js).
 
 
 ### Tech Stack
