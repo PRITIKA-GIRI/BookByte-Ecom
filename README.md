@@ -28,30 +28,30 @@ MindBloom is a full-stack web application built with React and Node.js that allo
 
 ### Setup Instructions
 
-1. **Clone the repo**
-    git clone https://github.com/yourusername/bookbyte.git
-   cd bookbyte
+1. Clone the repo
+git clone https://github.com/yourusername/bookbyte.git
+cd bookbyte
 
-3. Install backend dependencies
-   -cd server
-   - npm install
+2. Install backend dependencies
+cd server
+npm install
 
-4. Install frontend dependencies
-  cd ../src
-  npm install
+3. Install frontend dependencies
+cd ../src
+npm install
 
-5. Create the environment variables file inside the /server folder, create a .env file.
-  DATABASE_URL=your_db_connection_string
-  JWT_SECRET=your_jwt_secret_key
+4. Create the environment variables file inside the /server folder, create a .env file with:
+DATABASE_URL=your_db_connection_string
+JWT_SECRET=your_jwt_secret_key
 
-6. Start the backend server from the /server folder
-  node server.js
+5. Start the backend server from the /server folder
+node server.js
 
-7. Start the frontend development server
-  cd ../src
-  npm run dev
+6. Start the frontend development server
+cd ../src
+npm run dev
 
-8. Open the app in your browser
+7. Open the app in your browser
 
 
 
