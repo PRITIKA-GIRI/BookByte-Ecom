@@ -1,12 +1,12 @@
 import express from 'express';
 import pool from '../db.js';  // your pg pool setup
-import authenticate from '../middleware/authenticate.js';  // your auth middleware
+import authenticate from '../middleware/authMiddleware.js';  // your auth middleware
 
 const router = express.Router();
 
 // POST /api/purchase
 // Records a purchase, marks book purchased, reduces quantity
-router.post('/', authenticate, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const userId = req.user.id; // from authenticate middleware
     const { bookId, orderId, amount } = req.body;

@@ -1,28 +1,32 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { recordPurchase } from "../api/api";
 const PaymentResult = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
+
   const isSuccess = location.pathname === "/success";
   const pid = new URLSearchParams(location.search).get("pid");
+  const oid = new URLSearchParams(location.search).get("oid");
+  const amt = new URLSearchParams(location.search).get("amt");
 
   useEffect(() => {
-    if (isSuccess && pid) {
-      fetch("http://localhost:5000/api/purchase", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // if needed
-        body: JSON.stringify({ bookId: pid }),
-      })
-        .then(res => res.json())
-        .then(console.log)
-        .catch(console.error);
-    }
+    if (isSuccess && pid && oid && amt) {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("No auth token found. User must login first.");
+        return;
+      }
+       recordPurchase({ bookId: pid, orderId: oid, amount: amt }, token)
+      .then(res => console.log("Purchase recorded:", res.data))
+      .catch(console.error);
+  }
 
     const timer = setTimeout(() => navigate("/", { replace: true }), 4000);
     return () => clearTimeout(timer);
-  }, [isSuccess, pid, navigate]);
+  }, [isSuccess, pid, oid, amt, navigate]);
 
   return (
     <div style={{ textAlign: "center", marginTop: "5rem" }}>
@@ -34,4 +38,5 @@ const PaymentResult = () => {
     </div>
   );
 };
+
 export default PaymentResult;

@@ -5,6 +5,13 @@ import Header from './components/header'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import { AuthProvider } from './components/context/AuthContext';
+import PaymentResult from './components/PaymentResult'; // or correct path
+
+<Routes>
+  {/* Other routes */}
+  <Route path="/success" element={<PaymentResult />} />
+  <Route path="/failure" element={<PaymentResult />} />
+</Routes>
 
 
 function App() {
@@ -17,6 +24,8 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/success" element={<PaymentResult />} />
+          <Route path="/failure" element={<PaymentResult />} />
         </Routes>
 
       </Router>
