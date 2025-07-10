@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import authRoutes from './routes/auth.js'; // ✅ Only needed import
+import authRoutes from './routes/auth.js'; 
 import booksRoute from './routes/books.js';
 import purchaseRoutes from './routes/purchase.js';
 

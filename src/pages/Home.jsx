@@ -16,7 +16,7 @@ const Home = () => {
     setSearchItems(e.target.value);
   };
 
-  // Function to fetch books and update state
+  
   const getBooks = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -27,18 +27,16 @@ const Home = () => {
     }
   };
 
-  // Initial fetch on component mount
   useEffect(() => {
     getBooks();
   }, []);
 
-  // Watch for `refresh` flag in location.state (set when redirected from success page)
+ 
   useEffect(() => {
     if (location.state?.refresh) {
       getBooks();
 
-      // Clear the state so this effect only runs once per redirect
-      // This avoids infinite loops or repeated fetching on other renders
+      
       window.history.replaceState({}, document.title);
     }
   }, [location.state]);
@@ -73,7 +71,7 @@ const Home = () => {
               name={book.name}
               author={book.author}
               rating={book.rating}
-              is_purchased={book.is_purchased}  // <-- note prop name matches backend response
+              is_purchased={book.is_purchased}  
               price={book.price}
               available={book.quantity}
               pdf_url={`./assets/${book.pdf_url}`}

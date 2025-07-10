@@ -1,8 +1,7 @@
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Also add this if you use navigate
-import axios from 'axios'; // Assuming you also use axios
-import '../App.css'; // If you want to keep styles consistent
+import { useNavigate } from 'react-router-dom'; 
+import '../App.css'; 
 
 const Register=()=>{
     const [remail, setEmail] = useState('');
