@@ -1,12 +1,61 @@
-# React + Vite
+# BookByte — Online Bookstore with Secure Purchases
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BookByte is a full-stack web application built with React and Node.js that allows users to browse, purchase, and read digital books securely. The app features JWT-based authentication, seamless payment integration with eSewa, and purchase recording to personalize user access.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+### Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **User Authentication:** Register and login with JWT-based secure tokens.
+- **Browse Books:** Search and filter through a collection of books with ratings, authors, and pricing.
+- **Secure Purchase Flow:** Integration with eSewa payment gateway for digital purchases.
+- **Purchase Recording:** Successful transactions are recorded in the backend, unlocking purchased books for users.
+- **Protected Routes:** Middleware verifies JWT tokens to protect sensitive API endpoints.
+- **Responsive UI:** Built with React, styled with CSS, and icons from react-icons.
+- **Node.js & Express Backend:** RESTful API endpoints for auth, books, and purchase handling.
+- **MongoDB Database:** Stores user info, books, and purchase records (assumed from db.js).
+
+
+### Tech Stack
+
+- Frontend: React, React Router, Axios, react-icons
+- Backend: Node.js, Express, JWT, dotenv
+- Database: MongoDB (via `db.js`)
+- Payment Gateway: eSewa integration (test environment)
+- Authentication: JWT with Express middleware
+
+
+
+### Setup Instructions
+
+1. **Clone the repo**
+
+  git clone https://github.com/yourusername/bookbyte.git
+  cd bookbyte
+
+2. Install backend dependencies
+   cd server
+  npm install
+
+3. Install frontend dependencies
+  cd ../src
+  npm install
+
+4. Create the environment variables file inside the /server folder, create a .env file.
+  DATABASE_URL=your_db_connection_string
+  JWT_SECRET=your_jwt_secret_key
+
+5. Start the backend server from the /server folder
+  node server.js
+
+6. Start the frontend development server
+  cd ../src
+  npm run dev
+
+8. Open the app in your browser
+
+
+
+
+
+
