@@ -20,7 +20,7 @@ MindBloom is a full-stack web application built with React and Node.js that allo
 
 - Frontend: React, React Router, Axios, react-icons
 - Backend: Node.js, Express, JWT, dotenv
-- Database: MongoDB (via `db.js`)
+- Database: Postgres (via `db.js`)
 - Payment Gateway: eSewa integration (test environment)
 - Authentication: JWT with Express middleware
 
@@ -29,25 +29,25 @@ MindBloom is a full-stack web application built with React and Node.js that allo
 ### Setup Instructions
 
 1. **Clone the repo**
-git clone https://github.com/yourusername/bookbyte.git
-cd bookbyte
+   git clone https://github.com/yourusername/bookbyte.git
+   cd bookbyte
 
-2. Install backend dependencies
+3. Install backend dependencies
    cd server
   npm install
 
-3. Install frontend dependencies
+4. Install frontend dependencies
   cd ../src
   npm install
 
-4. Create the environment variables file inside the /server folder, create a .env file.
+5. Create the environment variables file inside the /server folder, create a .env file.
   DATABASE_URL=your_db_connection_string
   JWT_SECRET=your_jwt_secret_key
 
-5. Start the backend server from the /server folder
+6. Start the backend server from the /server folder
   node server.js
 
-6. Start the frontend development server
+7. Start the frontend development server
   cd ../src
   npm run dev
 
