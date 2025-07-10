@@ -3,8 +3,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #F0F4FA; /* Light blue-white */
-  color: #2C3E50; /* Dark blue-gray text */
+  background-color: #F1F5FB; /* light cool background */
+  color: #1A202C; /* dark slate for text */
 }
 
 #root {
@@ -31,7 +31,7 @@ body {
 }
 
 .left h4 {
-  color: #4A90E2; /* Medium calm blue */
+  color:#1E3A8A;
   margin: 0;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .right button {
-  background-color: #4A90E2;
+  background-color: #1E3A8A; /* deep blue */
   color: white;
   border: none;
   padding: 8px 16px;
@@ -54,7 +54,7 @@ body {
 }
 
 .right button:hover {
-  background-color: #357ABD; /* Darker blue on hover */
+  background-color: #162C6B; /* darker blue on hover */
 }
 
 .right button a {
@@ -70,16 +70,16 @@ body {
 .content-container h1 {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #2C3E50;
+  color: #1A202C;
 }
 
 .content-container h1 span {
-  color: #4A90E2;
+  color: #FBBF24; /* golden accent */
 }
 
 .content-container h5 {
   font-weight: 400;
-  color: #54719E;
+  color: #4B5563; /* subtle gray */
   margin-bottom: 30px;
 }
 
@@ -89,15 +89,15 @@ body {
   width: 350px;
   height: 50px;
   border-radius: 12px;
-  border: 2px solid #A9C1E8;
+  border: 2px solid #CBD5E0; /* soft gray */
   font-size: 16px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   background-color: #ffffff;
 }
 
 .content-container input:focus {
-  border-color: #4A90E2;
-  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+  border-color: #1E3A8A;
+  box-shadow: 0 0 5px rgba(30, 58, 138, 0.4);
   outline: none;
 }
 
@@ -113,10 +113,10 @@ body {
 .card-container {
   width: 300px;
   background-color: #ffffff;
-  border: 1px solid #ddd;
+  border: 1px solid #E2E8F0;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -127,7 +127,7 @@ body {
 
 .card-container:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-img {
@@ -150,12 +150,12 @@ body {
 }
 
 .card-container:hover .card-img img {
-  transform: scale(1);
+  transform: scale(1.05);
 }
 
 .card-details p {
   margin: 6px 0;
-  color: #2C3E50;
+  color: #1A202C;
 }
 
 .price-download {
@@ -169,12 +169,12 @@ body {
 .price {
   font-weight: bold;
   font-size: 16px;
-  color: #4A90E2;
+  color: #FBBF24; 
 }
 
-/* === Purchase Button === */
+
 .price-download button {
-  background-color: #4A90E2;
+  background-color: #1E3A8A;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -188,19 +188,19 @@ body {
 }
 
 .price-download button:hover {
-  background-color: #357ABD;
+  background-color: #162C6B;
   transform: scale(1.05);
 }
 
 .price-download button:disabled {
-  background-color: #cbd7ea;
-  color: #7a8ca3;
+  background-color: #CBD5E0;
+  color: #A0AEC0;
   cursor: not-allowed;
 }
 
 /* === Form Container === */
 .form-container {
-  border: 2px solid #4A90E2;
+  border: 2px solid #1E3A8A;
   border-radius: 12px;
   background-color: #ffffff;
   height: auto;
@@ -210,7 +210,7 @@ body {
   align-items: center;
   padding: 30px 20px;
   margin: auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 20px rgba(30, 58, 138, 0.08);
 }
 
 .form-container input {
@@ -218,7 +218,7 @@ body {
   width: 250px;
   border-radius: 12px;
   margin: 10px 0;
-  border: 1px solid #A9C1E8;
+  border: 1px solid #CBD5E0;
   padding: 0 10px;
   margin-bottom: 50px;
 }
@@ -227,7 +227,7 @@ body {
 .button {
   padding: 10px 16px;
   min-width: 100px;
-  background-color: #4A90E2;
+  background-color: #1E3A8A;
   color: white;
   border: none;
   border-radius: 8px;
@@ -238,35 +238,34 @@ body {
 }
 
 .button:hover {
-  background-color: #357ABD;
+  background-color: #162C6B;
 }
-/* App.css */
 
-/* Enhanced h1 styling */
+/* === Typography Enhancements === */
 h1 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 3rem;
-  color: #2C3E50;
+  color: #1E3A8A;
   letter-spacing: 1.2px;
   margin-bottom: 0.3rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
-h4{
+
+h4 {
   font-family: 'Poppins', sans-serif;
-  color: #2C3E50;
+  color: #1A202C;
 }
 
 h1 span {
-  color: #1A2533;
+  color: #FBBF24; /* golden MindBloom */
 }
 
 h1:hover {
-  color: #1A2533;
+  color: #162C6B;
 }
 
-/* Enhanced h5 styling */
 h6 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -275,4 +274,5 @@ h6 {
   margin-bottom: 1.5rem;
   line-height: 1.5;
   font-style: italic;
+  color: #4B5563;
 }

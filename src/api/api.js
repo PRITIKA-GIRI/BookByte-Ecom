@@ -10,9 +10,15 @@ export const registerUser=(userData)=>{
 export const loginUser=(credentials)=>{
     return API.post('/auth/login',credentials);
 };
-export const fetchBooks=()=>{
-    return API.get('/books');
+export const fetchBooks = (token) => {
+  const headers = token
+    ? { Authorization: `Bearer ${token}` }
+    : {};
+
+  return API.get('/books', { headers });
 };
+
+
 export const recordPurchase = ({ bookId, orderId, amount }, token) => {
   return API.post(
     '/purchase',

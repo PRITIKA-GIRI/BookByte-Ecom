@@ -1,71 +1,87 @@
 import Header from "../components/header";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import '../App.css';
 import { fetchBooks } from "../api/api";
 import Card from "../components/ProductCard";
-import { Navigate } from "react-router-dom";
 
 const Home = () => {
-    const [books, setBooks] = useState([]);
-    const [searchItems, setSearchItems] = useState("");
-    const handleChange = (e) => {
-        setSearchItems(e.target.value);
-    };
-    const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const getBooks = async () => {
-            try {
-                const res = await fetchBooks();
-                setBooks(res.data);
-            }
-            catch (err) {
-                console.error("Error fetching books", err);
-            }
+  const [books, setBooks] = useState([]);
+  const [searchItems, setSearchItems] = useState("");
 
-        }
-        getBooks();
-    }, []);
-    return (
-        <div className="big-container">
+  const handleChange = (e) => {
+    setSearchItems(e.target.value);
+  };
 
-            <div className="content-container">
-                <h1 onClick={() => navigate('/')} style={{ cursor: "pointer" }}> Mind<span style={{ color: "#4A90E2" }}>Bloom </span> </h1>
-                <h6>Your favorite space for inspired contents</h6>
-                <input type="text"
-                    name="searchItems"
-                    placeholder="🔍 Search here ..."
-                    value={searchItems}
-                    onChange={handleChange}
+  // Function to fetch books and update state
+  const getBooks = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetchBooks(token); // token can be null if not logged in
+      setBooks(res.data);
+    } catch (err) {
+      console.error("Error fetching books", err);
+    }
+  };
 
-                />
-            </div><br /><br />
-            <h4>Latest & Popular</h4>
-            <div className="d-flex popularProducts">
-                {
-                    books.filter((book) =>
-                        book.name.toLowerCase().includes(searchItems.toLowerCase()
-                        ))
-                        .map((book) => (
-                            <Card
-                                key={book.id}
-                                id={book.id}
-                                image={book.image}
-                                name={book.name}
-                                author={book.author}
-                                rating={book.rating}
-                                isPurchased={book.is_purchased}
-                                price={book.price}
-                                available={book.quantity}
-                                pdf_url={`/assets/${book.pdf_url}`}
-                            />
-                        ))
-                }
-            </div>
-        </div>
-    )
+  // Initial fetch on component mount
+  useEffect(() => {
+    getBooks();
+  }, []);
 
+  // Watch for `refresh` flag in location.state (set when redirected from success page)
+  useEffect(() => {
+    if (location.state?.refresh) {
+      getBooks();
 
-}
+      // Clear the state so this effect only runs once per redirect
+      // This avoids infinite loops or repeated fetching on other renders
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
+  return (
+    <div className="big-container">
+      <div className="content-container">
+        <h1 onClick={() => navigate('/')} style={{ cursor: "pointer" }}>
+          Mind<span style={{ color: "#1E3A8A" }}>Bloom</span>
+        </h1>
+        <h6>Your favorite space for inspired contents</h6>
+        <input
+          type="text"
+          name="searchItems"
+          placeholder="🔍 Search here ..."
+          value={searchItems}
+          onChange={handleChange}
+        />
+      </div>
+      <br /><br />
+      <h4>Latest & Popular</h4>
+      <div className="d-flex popularProducts">
+        {books
+          .filter(book =>
+            book.name.toLowerCase().includes(searchItems.toLowerCase())
+          )
+          .map(book => (
+            <Card
+              key={book.id}
+              id={book.id}
+              image={book.image}
+              name={book.name}
+              author={book.author}
+              rating={book.rating}
+              is_purchased={book.is_purchased}  // <-- note prop name matches backend response
+              price={book.price}
+              available={book.quantity}
+              pdf_url={`./assets/${book.pdf_url}`}
+            />
+          ))}
+      </div>
+    </div>
+  );
+};
+
 export default Home;

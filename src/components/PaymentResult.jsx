@@ -1,32 +1,35 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { recordPurchase } from "../api/api";
+
 const PaymentResult = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
 
   const isSuccess = location.pathname === "/success";
-  const pid = new URLSearchParams(location.search).get("pid");
-  const oid = new URLSearchParams(location.search).get("oid");
-  const amt = new URLSearchParams(location.search).get("amt");
+
+  const bookId = parseInt(new URLSearchParams(location.search).get("pid"));
+  const orderId = new URLSearchParams(location.search).get("oid");
+  const amount = new URLSearchParams(location.search).get("amt");
 
   useEffect(() => {
-    if (isSuccess && pid && oid && amt) {
+    if (isSuccess && bookId && orderId && amount) {
       const token = localStorage.getItem("token");
 
       if (!token) {
         console.error("No auth token found. User must login first.");
         return;
       }
-       recordPurchase({ bookId: pid, orderId: oid, amount: amt }, token)
-      .then(res => console.log("Purchase recorded:", res.data))
-      .catch(console.error);
-  }
 
-    const timer = setTimeout(() => navigate("/", { replace: true }), 4000);
+      recordPurchase({ bookId, orderId, amount }, token)
+        .then(res => console.log("✅ Purchase recorded:", res.data))
+        .catch(err => console.error("❌ Purchase record failed:", err));
+    }
+
+    const timer = setTimeout(() => navigate("/", { replace: true, state: { refresh: true } }), 4000);
+
     return () => clearTimeout(timer);
-  }, [isSuccess, pid, oid, amt, navigate]);
+  }, [isSuccess, bookId, orderId, amount, navigate]);
 
   return (
     <div style={{ textAlign: "center", marginTop: "5rem" }}>

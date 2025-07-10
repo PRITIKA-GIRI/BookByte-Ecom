@@ -11,10 +11,11 @@ const Card = ({ id, image, name, author, rating, is_purchased, price, pdf_url })
   if (is_purchased) {
     window.open(pdf_url, '_blank');
   } else {
+    const bookId = id;
     const amount = Number(price).toFixed(2);
     const orderId = `ORDER_${Date.now()}`;
 
-    const successUrl = `http://localhost:5173/success?pid=${orderId}&amt=${amount}`;
+    const successUrl = `http://localhost:5173/success?pid=${bookId}&oid=${orderId}&amt=${amount}`;
     const failureUrl = `http://localhost:5173/failure`;
 
     const params = new URLSearchParams({
