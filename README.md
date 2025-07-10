@@ -1,6 +1,6 @@
-# BookByte — Online Bookstore with Secure Purchases
+# MindBloom — Online Bookstore with Secure Purchases
 
-BookByte is a full-stack web application built with React and Node.js that allows users to browse, purchase, and read digital books securely. The app features JWT-based authentication, seamless payment integration with eSewa, and purchase recording to personalize user access.
+MindBloom is a full-stack web application built with React and Node.js that allows users to browse, purchase, and read digital books securely. The app features JWT-based authentication, seamless payment integration with eSewa, and purchase recording to personalize user access.
 
 
 
@@ -29,9 +29,8 @@ BookByte is a full-stack web application built with React and Node.js that allow
 ### Setup Instructions
 
 1. **Clone the repo**
-
-  git clone https://github.com/yourusername/bookbyte.git
-  cd bookbyte
+git clone https://github.com/yourusername/bookbyte.git
+cd bookbyte
 
 2. Install backend dependencies
    cd server
